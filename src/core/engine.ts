@@ -45,6 +45,7 @@ export class Engine {
   }
 
   async lint(doc: vscode.TextDocument) {
+    console.log("Linting poggers")
     if (!this.supports(doc)) return;
 
     const diags: vscode.Diagnostic[] = [];

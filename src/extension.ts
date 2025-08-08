@@ -39,7 +39,7 @@ export function activate(context: vscode.ExtensionContext): MyLinterAPI {
   // quick fixes
   context.subscriptions.push(
     vscode.languages.registerCodeActionsProvider(
-      getConfig().languages.length ? getConfig().languages : ['*'],
+      getConfig().languages.length ? getConfig().languages : [{ language: '*' }],
       engine.codeActionsProvider(),
       { providedCodeActionKinds: [vscode.CodeActionKind.QuickFix] }
     )

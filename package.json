@@ -1,41 +1,44 @@
 {
   "name": "custom-linter",
-  "displayName": "custom-linter",
-  "description": "",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.100.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
+  "displayName": "My Linter",
+  "publisher": "yourname",
+  "version": "0.1.0",
+  "engines": { "vscode": "^1.85.0" },
+  "activationEvents": ["*"],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "custom-linter.helloWorld",
-        "title": "Hello World"
+    "configuration": {
+      "title": "My Linter",
+      "properties": {
+        "mylinter.enabled": { "type": "boolean", "default": true },
+        "mylinter.languages": {
+          "type": "array",
+          "description": "Language IDs to lint. Empty = all.",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "mylinter.enableRules": {
+          "type": "array",
+          "description": "Rule IDs to enable. Empty = enable all registered rules.",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "mylinter.ruleOptions": {
+          "type": "object",
+          "description": "Per-rule options keyed by rule id.",
+          "default": {}
+        }
       }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
+    "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "@types/vscode": "^1.100.0",
-    "@typescript-eslint/eslint-plugin": "^8.39.0",
-    "@typescript-eslint/parser": "^8.39.0",
-    "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2",
-    "eslint": "^9.32.0",
-    "typescript": "^5.9.2"
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.5.0",
+    "vsce": "^2.15.0"
   }
 }
